@@ -22,20 +22,15 @@ def get_page_data(url, jobs_list):
     return jobs_list
 
 def get_next_url(base_url, page):
-    return f"{base_url}?page={page}"
+    return f"{base_url}?page={page + 1}"
 
 def get_jobs_list(url):
     jobs_list = []
     number_of_pages = get_number_of_pages(url)
     for page in range(1, int(number_of_pages) + 1):
             jobs_list = get_page_data(url, jobs_list)
-            print(jobs_list)
-            try:
-                url = get_next_url("https://jobb.blocket.se/lediga-jobb", page + 1)
-            except:
-                break
-            
-    return jobs_list
+            url = get_next_url("https://jobb.blocket.se/lediga-jobb", page)
 
+    return jobs_list
 
 get_jobs_list("https://jobb.blocket.se/lediga-jobb")
