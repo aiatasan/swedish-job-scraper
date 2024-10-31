@@ -17,7 +17,7 @@ def get_page_data(url, jobs_list):
     job_cards = soup.find_all('div', class_="sc-b071b343-0 eujsyo")
     for item in job_cards:
         href = "https://jobb.blocket.se" + item.a.attrs['href']
-        jobs_list.append({"URL": href})
+        jobs_list.append(href)
 
     return jobs_list
 
@@ -28,9 +28,10 @@ def get_jobs_list(url):
     jobs_list = []
     number_of_pages = get_number_of_pages(url)
     for page in range(1, int(number_of_pages) + 1):
+            print(f"getting page number {page}")
             jobs_list = get_page_data(url, jobs_list)
             url = get_next_url("https://jobb.blocket.se/lediga-jobb", page)
 
+    print(jobs_list)
     return jobs_list
 
-get_jobs_list("https://jobb.blocket.se/lediga-jobb")
