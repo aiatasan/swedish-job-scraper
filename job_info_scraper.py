@@ -140,7 +140,7 @@ def scrape_job_posting(url):
     return data
 
 if __name__ == "__main__":
-    for i in range(2196925, 2197401):
+    for i in range(1, 197401):
         url = f"https://jobb.blocket.se/ledigt-jobb/{i}"
         try:
             job_data = scrape_job_posting(url)
